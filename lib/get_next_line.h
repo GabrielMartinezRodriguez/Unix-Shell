@@ -12,7 +12,7 @@
 
 #ifndef FT_GET_NEXT_LINE_H
 # define FT_GET_NEXT_LINE_H
-# include "../libft/libft.h"
+# include "./libft.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 64
 # endif
