@@ -1,6 +1,6 @@
 NAME = -o dogSHell
 BNAME = -o ./beta/BdogSHell
-LIB = lib/libTx.a
+LIB = lib/lib.a
 COMPILA = GCC
 CFLAGS = -Wall -Wextra -Werror
 BMAIN = ./beta/main.c
