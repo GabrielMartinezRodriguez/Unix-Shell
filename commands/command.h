@@ -3,6 +3,9 @@
 
 # include "../lib/lib.h"
 
+typedef     int         (*ExecCommand)(char **);
+typedef     ExecCommand (*ParseCommand)(char **);
+
 typedef enum {
     ALWAYS,
     SUCCESSFUL,
@@ -12,22 +15,27 @@ typedef enum {
 typedef struct {
     Condition   condition;
     char        **args;
+    ExecCommand exec;
 } Command;
+
+typedef enum {
+    PIPE,
+    FILE,
+    FILE_APPEND
+} OutputType;
 
 typedef struct {
     Command         *command;
-    int             pipe; //Debe crear un pipe para el siguiente comando
-    int             inputFile; // Debe leer de fichero
-    int             outputFile; // Debe escribir en fichero - Tiene mayor prioridad que el pipe
+    int             inputFile; 
+    OutputType      outputType;
     CommandBuffer   *next;
 } CommandBuffer;
 
-typedef     int         (*ExecCommand)(char **);
-typedef     ExecCommand (*ParseCommand)(char **);
+ExecCommand pwdParse(char **args);
 
-
-extern ParseCommand ls; 
-extern ParseCommand pwd;
-
+ParseCommand CommandParseList[] = {
+    &pwdParse
+};
+ 
 
 #endif
